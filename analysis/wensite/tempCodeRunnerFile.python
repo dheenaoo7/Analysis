@@ -1,0 +1,7 @@
+import requests
+import time
+import json
+from bs4 import BeautifulSoup
+import mysql.connector
+response = requests.get('https://money.usnews.com/careers/best-jobs/data-scientist')
+print(response.content)
