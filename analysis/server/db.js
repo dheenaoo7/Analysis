@@ -6,10 +6,11 @@ const port = 3001;
 app.use(cors());
 
 const connection = mysql.createConnection({
-    host: "analysis.cyufabl1vpsa.ap-northeast-1.rds.amazonaws.com",
-    user: "admin",
-    password: "admin123",
-    database: "analysis"
+    host: "db",
+    user: "testuser",
+    password: "testpass",
+    database: "testdb",
+    port: 3306
 });
 
 connection.connect((err) => {

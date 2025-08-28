@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import BarChart1 from './BarChart1';
+import BarChart from './BarChart';
 import './App.css';
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
           <option value="Cloud_engineer">Cloud Engineer</option>
           <option value="Software_engineer">Software Engineer</option>
         </select>
-          {selectedJobTitle && <BarChart1 selectedJobTitle={selectedJobTitle} />}
+          {selectedJobTitle && <BarChart selectedJobTitle={selectedJobTitle} />}
       </header>
     </div>
   );

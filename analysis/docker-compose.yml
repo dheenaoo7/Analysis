@@ -1,6 +1,39 @@
 version: '3'
 services:
+  db:
+    image: mysql:8.0
+    container_name: mini-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: testdb
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: testpass
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - app-network
+
+  python-worker:
+    image: python:3.10-slim
+    working_dir: /app
+    volumes:
+      - ./website:/app
+    command: sh -c "pip install requests beautifulsoup4 mysql-connector-python && python tempCodeRunnerFile.py"
+    networks:
+      - app-network 
+
   node-app:
+    build:
+      context: ./server
+    ports:
+      - "3001:3001"
+    networks:
+      - app-network    
+
+  react-app:
     build:
       context: ./client
     ports:
@@ -8,13 +41,10 @@ services:
     networks:
       - app-network
 
-  react-app:
-    build:
-      context: ./server
-    ports:
-      - "3001:3001"
-    networks:
-      - app-network
 
 networks:
   app-network:
+
+volumes:
+  db_data:  
+
