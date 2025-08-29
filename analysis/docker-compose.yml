@@ -15,16 +15,7 @@ services:
       - db_data:/var/lib/mysql
     networks:
       - app-network
-
-  python-worker:
-    image: python:3.10-slim
-    working_dir: /app
-    volumes:
-      - ./website:/app
-    command: sh -c "pip install requests beautifulsoup4 mysql-connector-python && python tempCodeRunnerFile.py"
-    networks:
-      - app-network 
-
+      
   node-app:
     build:
       context: ./server
