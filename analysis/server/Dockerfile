@@ -1,6 +1,6 @@
 FROM node:slim
 WORKDIR /app
 COPY . /app/
-RUN npm  install
+RUN npm install axios mysql2 node-cron playwright
 EXPOSE 3001
-CMD [ "node","db.js" ]
+CMD [ "node","server.js" ]
